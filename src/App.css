@@ -1,9 +1,37 @@
 .student-data-container {
   border: 0.5px solid #ededed;
   display: flex;
+  gap: 20px;
+  justify-content: column;
+  margin-left: 20%;
+  margin-right: 20%;
+  
 }
 
 .student-data-container img {
-  border: 0.5px solid gray;
+  border: 0.5px solid rgb(71, 69, 69);
   border-radius: 50%;
+
+}
+.studentdetail {
+  display: flex;
+  flex-direction: column;
+  align-content: 0px;
+  gap:0px;
+  height: 160px;
+}
+
+.togglebutton {
+  margin-left: 360%;
+  margin-top: 15%;
+}
+
+.togglebutton:focus {
+  background-color: rgb(94, 111, 209);
+}
+.togglebutton:visited {
+  background-color: rgb(18, 53, 209);
+}
+.togglebutton:hover {
+  background-color: rgb(76, 77, 76);
 }

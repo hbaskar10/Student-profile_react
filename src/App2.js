@@ -4,14 +4,14 @@ import './App.css';
 import Input from './Input'
 import Grades from './Grades'
 
-function App() {
+function App2() {
 
   const [data, setData] = useState(null)
   const [searchStr, setsearchStr] = useState('')
   
-  //  const [clickedcard, setclickedcard] = useState([])
-   const [clickedcard, setclickedcard] = useState("")
-  const [buttonState, setbuttonState] = useState(false);
+   const [clickedcard, setclickedcard] = useState([])
+  // const [clickedcard, setclickedcard] = useState("")
+//   const [buttonState, setbuttonState] = useState(false);
 
   console.log(clickedcard, 'clickedcard')
 
@@ -32,34 +32,35 @@ function App() {
   }
 
 
-  // function toggleShowGrade(clickedId) {
-  //   let copyClickedcard = [...clickedcard]
+  function toggleShowGrade(clickedId) {
+    //console.log(clickedId)
+    let copyClickedcard = [...clickedcard]
+    //console.log(clickedcard)
+    if(copyClickedcard.includes(clickedId)) {
+       const index = copyClickedcard.indexOf(clickedId)
+       copyClickedcard.splice(index, 1)
+       return setclickedcard(copyClickedcard)
+    }
+    else {
+     copyClickedcard.push(clickedId)
+     setclickedcard(copyClickedcard)
+    }
+  }
 
-  //   if(copyClickedcard.includes(clickedId)) {
-  //      const index = copyClickedcard.indexOf(clickedId)
-  //      copyClickedcard.splice(index, 1)
-  //     return setclickedcard(copyClickedcard)
+  //   function toggleShowGrade(clickedId) {
+        
+  //     //clickedcard is set initial state empty - 
+  //     //by default all toggle will be closed for user
+  //     if(clickedcard === clickedId) {
+  //       return setclickedcard("")
   //   }
   //   else {
-  //    copyClickedcard.push(clickedId)
-  //    setclickedcard(copyClickedcard)
+  //      setclickedcard(clickedId) 
   //   }
+  //   // setclickedcard(clickedcard) //where if clicked id is where user has already clicked, 
+  //   //
+
   // }
-
-    function toggleShowGrade(clickedId) {
-        
-      //clickedcard is set initial state empty - 
-      //by default all toggle will be closed for user
-      if(clickedcard === clickedId) {
-        return setclickedcard("")
-    }
-      else {
-       setclickedcard(clickedId) 
-    }
-    // setclickedcard(clickedcard) //where if clicked id is where user has already clicked, 
-    //
-
-  }
 
 
   // function handleClick() {
@@ -85,22 +86,21 @@ function App() {
         return (
           <div className='student-data-container'>
             <div> 
-              <button onClick={()=>toggleShowGrade(i.id)} className="togglebutton"> ++ {isButtonExpanded()} </button>
+              <button onClick={()=>toggleShowGrade(i.id)} className="togglebutton"> - {isButtonExpanded()} </button>
               {/* <button onClick={()=>handleClick(i.id)}> ++ </button> */}
 
               <img src={i.pic} width="150px" height="150px" alt=""></img>
             </div>
-            {i.id === clickedcard ? <Grades 
-            grades = {i.grades}
-            /> : null  
-            } 
-
-            {/* {clickedcard.includes(i.id) ? <Grades 
+            {/* {i.id === clickedcard ? <Grades 
             grades = {i.grades}
             /> : null  
             }  */}
+            {clickedcard.includes(i.id) ? <Grades 
+            grades = {i.grades}
+            /> : null  
+            } 
           
-            <div className="studentdetail">
+            <div className="studentDetail">
               <h1>{i.firstName.toUpperCase()} {i.lastName.toUpperCase()}</h1>
               <p>Email: {i.email}</p>
               <p>Company: {i.company}</p>
@@ -121,4 +121,4 @@ function App() {
   );
 }
 
-export default App;
+export default App2;
